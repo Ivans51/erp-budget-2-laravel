@@ -1,0 +1,17 @@
+includes:
+    - ./vendor/larastan/larastan/extension.neon
+
+parameters:
+    paths:
+        - app/
+
+    # Level 9 is the strictest (highest).
+    # Level 5 is a good balance for existing projects.
+    # Level 0 is good for starting out on legacy code.
+    level: 5
+
+#    ignoreErrors:
+#        - '#PHPDoc tag @var#'
+#
+#    excludePaths:
+#        - ./*/*/FileToBeExcluded.php
