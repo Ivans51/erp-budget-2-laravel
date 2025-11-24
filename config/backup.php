@@ -24,7 +24,7 @@ return [
                  * Directories used by the backup process will automatically be excluded.
                  */
                 'exclude' => [
-                    base_path('vendor'),       // Don't backup vendor (waste of space)
+                    base_path('vendor'), // Don't backup vendor (waste of space)
                     base_path('node_modules'), // Don't backup JS modules
                     storage_path('app/backup-temp'),
                 ],
