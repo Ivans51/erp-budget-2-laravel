@@ -1,0 +1,62 @@
+name: Deploy to Production
+
+on:
+  push:
+    # Option A: Deploy every time you update main (Easier)
+    # branches: [ "main" ]
+
+    # Option B: Deploy only when you tag a release (Safer for ERPs)
+    tags:
+      - 'v*'  # Triggers on v1.0, v1.0.1, etc.
+
+jobs:
+  deploy:
+    # ONLY run if the Quality Check workflow passed (requires GitHub Pro or public repo)
+    # If you don't have this, just ensure you rely on Branch Protection rules.
+    name: Deploy via SSH
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to Server
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.PROD_USER }}
+          key: ${{ secrets.PROD_SSH_KEY }}
+          port: 22
+          script: |
+            # 1. Go to project folder
+            cd /var/www/erp-system
+
+            # 2. Enter Maintenance Mode (Critical for ERPs to prevent data corruption)
+            # We use a secret token so you can bypass it to check if it works
+            php artisan down --secret="1630542a-246b-4b66-afa1-dd72a4c43515"
+
+            # 3. Pull the latest code
+            git pull origin main
+
+            # 4. Install Dependencies (Production Mode)
+            # --no-dev: Don't install Pint/PHPStan/Faker
+            # --optimize-autoloader: Makes PHP faster
+            composer install --no-dev --optimize-autoloader
+
+            # 5. Database Migrations
+            # --force is required in production
+            php artisan migrate --force
+
+            # 6. Clear and Rebuild Caches (Performance)
+            php artisan cache:clear
+            php artisan config:cache
+            php artisan route:cache
+            php artisan view:cache
+            php artisan event:cache
+
+            # 7. Restart Queue Workers (Important!)
+            # If you don't do this, your old queues will run old code and crash.
+            php artisan queue:restart
+
+            # 8. Back Online
+            php artisan up

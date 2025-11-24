@@ -9,7 +9,8 @@
         "php": "^8.2",
         "brick/money": "^0.10.3",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "spatie/laravel-backup": "^9.3"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",
@@ -61,6 +62,9 @@
         ],
         "phpstan": [
             "./vendor/bin/phpstan analyse"
+        ],
+        "backup": [
+            "@php artisan backup:run"
         ],
         "test": [
             "@php artisan config:clear --ansi",
