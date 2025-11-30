@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\V1\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Http\Resources\V1\UserResource;
-use App\Http\Requests\RegisterRequest;
 use App\Domain\Org\Models\User;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
+use App\Http\Resources\V1\UserResource;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Hash;
 
 class RegisterController extends Controller
 {

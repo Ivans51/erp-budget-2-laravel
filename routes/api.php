@@ -10,7 +10,7 @@ Route::get('/test', function () {
     return response()->json([
         'message' => 'Vue.js can communicate with Laravel API',
         'timestamp' => now()->toISOString(),
-        'status' => 'success'
+        'status' => 'success',
     ]);
 });
 
@@ -40,7 +40,7 @@ Route::prefix('v1')->group(function () {
         Route::get('/profile', function (Request $request) {
             return response()->json([
                 'message' => 'Authenticated route accessible to Vue components',
-                'user' => $request->user()
+                'user' => $request->user(),
             ]);
         });
     });
