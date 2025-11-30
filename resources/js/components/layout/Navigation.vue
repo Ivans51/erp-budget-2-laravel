@@ -21,18 +21,8 @@
     }"
   >
     <!-- Logo/Brand -->
-    <div class="px-6 py-8">
-      <div class="flex items-center gap-3">
-        <div class="bg-blue-600 text-white p-2 rounded-lg">
-          <Wallet class="h-6 w-6" />
-        </div>
-        <div>
-          <h1 class="text-lg font-bold text-gray-900 leading-tight">
-            ERP Budget
-          </h1>
-          <p class="text-xs text-gray-500">Financial Management</p>
-        </div>
-      </div>
+    <div class="py-6 rounded-lg">
+      <img src="../../../img/logo.png" alt="ERP Budget Logo" class="m-auto h-20" />
     </div>
 
     <!-- Navigation Links -->

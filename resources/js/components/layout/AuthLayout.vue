@@ -4,18 +4,15 @@
       <!-- Logo/Brand -->
       <div class="flex justify-center">
         <div class="flex items-center space-x-2">
-          <Wallet class="w-16 h-16 text-white bg-indigo-500 p-2 rounded-2xl" />
+          <img src="../../../img/logo.png" alt="ERP Budget Logo" class="h-16 w-auto" />
         </div>
       </div>
 
       <!-- Auth Header -->
       <div class="mt-6 text-center">
-        <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">
-          {{ title }}
-        </h2>
-        <p class="mt-2 text-center text-sm text-gray-600">
+        <h2 class="mt-6 text-center text-xl font-extrabold text-gray-900">
           {{ description }}
-        </p>
+        </h2>
       </div>
     </div>
 
@@ -37,7 +34,7 @@
 <script setup>
 import { computed } from 'vue'
 import { useRoute } from 'vue-router'
-import { Wallet } from 'lucide-vue-next'
+
 
 const route = useRoute()
 
