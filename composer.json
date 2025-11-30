@@ -8,9 +8,11 @@
     "require": {
         "php": "^8.2",
         "brick/money": "^0.10.3",
+        "knuckleswtf/scribe": "^5.6",
         "laravel/framework": "^12.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
+        "sentry/sentry-laravel": "^4.19",
         "spatie/laravel-backup": "^9.3"
     },
     "require-dev": {
@@ -69,6 +71,13 @@
         ],
         "backup": [
             "./vendor/bin/sail php artisan backup:run"
+        ],
+        "docs": [
+            "@php artisan scribe:generate"
+        ],
+        "docs:open": [
+            "@php artisan scribe:generate",
+            "@php -r \"if (PHP_OS_FAMILY === 'Linux') { exec('xdg-open http://localhost:8000/docs'); } elseif (PHP_OS_FAMILY === 'Darwin') { exec('open http://localhost:8000/docs'); } elseif (PHP_OS_FAMILY === 'Windows') { exec('start http://localhost:8000/docs'); }\""
         ],
         "test": [
             "@php artisan config:clear --ansi",
