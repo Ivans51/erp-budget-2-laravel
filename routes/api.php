@@ -5,6 +5,15 @@ use App\Http\Controllers\V1\Auth\RegisterController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+// Public API test route (no authentication required)
+Route::get('/test', function () {
+    return response()->json([
+        'message' => 'Vue.js can communicate with Laravel API',
+        'timestamp' => now()->toISOString(),
+        'status' => 'success'
+    ]);
+});
+
 // API Version 1 Routes
 Route::prefix('v1')->group(function () {
 
@@ -24,6 +33,14 @@ Route::prefix('v1')->group(function () {
                 'data' => [
                     'user' => $request->user(),
                 ],
+            ]);
+        });
+
+        // Example authenticated route for Vue components
+        Route::get('/profile', function (Request $request) {
+            return response()->json([
+                'message' => 'Authenticated route accessible to Vue components',
+                'user' => $request->user()
             ]);
         });
     });

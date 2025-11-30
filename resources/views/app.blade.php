@@ -34,7 +34,7 @@
             </style>
         @endif
     </head>
-    <body class="min-h-screen flex items-center justify-center bg-gray-50">
-        <h1 class="text-4xl font-bold text-blue-400">{{ config('app.name', 'Laravel') }} budget</h1>
+    <body class="min-h-screen bg-gray-50">
+        <div id="app"></div>
     </body>
 </html>
