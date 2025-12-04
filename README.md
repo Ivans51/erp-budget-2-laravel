@@ -1,59 +1,203 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# ERP Budget 2 - Laravel
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![Laravel](https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg)
 
-## About Laravel
+A modern ERP Budget management system built with Laravel 12, designed to help organizations manage their financial planning, budgeting, and resource allocation efficiently.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🚀 Features
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Budget Management**: Create, track, and manage organizational budgets
+- **Financial Planning**: Comprehensive tools for financial forecasting and planning
+- **Resource Allocation**: Optimize resource distribution across departments
+- **Reporting & Analytics**: Generate detailed financial reports and insights
+- **User Management**: Role-based access control for secure budget management
+- **Modern UI**: Built with Tailwind CSS and Vite for a responsive interface
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## 📋 Project Structure
 
-## Learning Laravel
+```
+erp-budget-2-laravel/
+├── app/                  # Core application logic
+│   ├── Http/             # Controllers and middleware
+│   ├── Models/           # Eloquent models
+│   └── Providers/        # Service providers
+├── bootstrap/            # Framework bootstrap files
+├── config/               # Configuration files
+├── database/             # Migrations, seeders, and factories
+├── public/               # Public assets and entry point
+├── resources/            # Views, CSS, and JavaScript
+├── routes/               # Application routes
+├── storage/              # Logs, cache, and compiled files
+├── tests/                # PHPUnit tests
+└── vendor/               # Composer dependencies
+```
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 🛠️ Technology Stack
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- **Backend**: Laravel 12, PHP 8.2+
+- **Frontend**: Tailwind CSS, Vite, Alpine.js
+- **Database**: SQLite (default), MySQL/PostgreSQL supported
+- **Testing**: PHPUnit, Pest
+- **Development Tools**: Laravel Sail, Laravel Pint, Laravel Tinker
 
-## Laravel Sponsors
+## 📦 Requirements
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- PHP 8.2 or higher
+- Composer 2.0+
+- Node.js 18+ (for frontend assets)
+- SQLite or MySQL/PostgreSQL database
 
-### Premium Partners
+## 🔧 Installation & Setup
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 1. Clone the Repository
 
-## Contributing
+```bash
+git clone https://github.com/your-username/erp-budget-2-laravel.git
+cd erp-budget-2-laravel
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 2. Install PHP Dependencies
 
-## Code of Conduct
+```bash
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 3. Set Up Environment
 
-## Security Vulnerabilities
+Copy the example environment file and generate application key:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-## License
+### 4. Install JavaScript Dependencies
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+npm install
+```
+
+### 5. Run Database Migrations
+
+```bash
+php artisan migrate
+```
+
+### 6. Build Frontend Assets
+
+```bash
+npm run build
+```
+
+## 🚀 Running the Application
+
+### Development Mode
+
+```bash
+php artisan serve
+npm run dev
+```
+
+### Production Mode
+
+```bash
+php artisan serve --env=production
+npm run build
+```
+
+## 📖 Usage Examples
+
+### Creating a New Budget
+
+```php
+// Example controller method for creating budgets
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'amount' => 'required|numeric',
+        'department_id' => 'required|exists:departments,id',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+    ]);
+
+    $budget = Budget::create($validated);
+
+    return redirect()->route('budgets.show', $budget)
+        ->with('success', 'Budget created successfully!');
+}
+```
+
+### Generating Budget Reports
+
+```php
+// Example report generation
+public function generateReport($budgetId)
+{
+    $budget = Budget::with(['transactions', 'department'])->findOrFail($budgetId);
+
+    $reportData = [
+        'budget' => $budget,
+        'total_spent' => $budget->transactions->sum('amount'),
+        'remaining' => $budget->amount - $budget->transactions->sum('amount'),
+        'percentage_used' => ($budget->transactions->sum('amount') / $budget->amount) * 100,
+    ];
+
+    return view('reports.budget', $reportData);
+}
+```
+
+## 🧪 Testing
+
+Run the test suite:
+
+```bash
+php artisan test
+```
+
+## 🤝 Contributing
+
+We welcome contributions to ERP Budget 2! Please follow these guidelines:
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/your-feature-name`
+3. Commit your changes with descriptive messages
+4. Push to your branch: `git push origin feature/your-feature-name`
+5. Open a Pull Request
+
+### Development Workflow
+
+```bash
+# Install dependencies
+composer install
+npm install
+
+# Run development server with hot reloading
+composer run dev
+
+# Run tests
+php artisan test
+
+# Format code
+composer pint
+```
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 🔒 Security
+
+If you discover any security vulnerabilities, please email security@erp-budget.com instead of using the issue tracker.
+
+## 📬 Contact
+
+For questions or support, please contact:
+
+- **Email**: support@erp-budget.com
+- **Website**: https://erp-budget.com
+- **GitHub Issues**: https://github.com/your-username/erp-budget-2-laravel/issues
+
+---
+
+> "Budgeting is not just about numbers, it's about making informed decisions for your organization's future." - ERP Budget Team
